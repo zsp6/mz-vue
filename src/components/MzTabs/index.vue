@@ -1,5 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    正在上映
+    即将上映
   </div>
 </template>
