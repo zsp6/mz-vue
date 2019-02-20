@@ -44,7 +44,7 @@ export default {
         pageSize: 10
       }
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       let data = res.data;
       if (data.code === 0) {
         this.bannerList = data.data;

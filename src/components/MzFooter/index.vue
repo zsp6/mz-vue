@@ -47,6 +47,9 @@
         font-size: 21px;
         margin-bottom: 3px;
       }
+      &.router-link-active{
+        color: #ff5f16;
+      }
     }
   }
 }
