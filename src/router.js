@@ -14,11 +14,13 @@ import Film from './views/Film.vue';
 import Cinema from './views/Cinema.vue';
 import Center from './views/Center.vue';
 import City from './views/City.vue';
-import Home from './views/Home.vue'
+import Home from './views/Home.vue';
+import Detail from './views/Detail.vue';
 
 Vue.use(VueRouter);
 
 let router = new VueRouter({
+  mode: 'history',
   // 配置路由对照表  url -> 视图组件
   // localhost:8080/#/films     -> Film.vue
   // localhost:8080/#/cinemas   -> Cinema.vue
@@ -54,9 +56,24 @@ let router = new VueRouter({
         }
       ]
     },
+    // 城市选择页
     {
       path: '/city',
       component: City
+      // components: {
+      //   top: City,
+      //   bottom: Detail,
+      //   default: Home
+      // }
+    },
+    // 详情页
+    {
+      path: '/detail/:id',
+      component: Detail
+      // props: true
+      // props: {
+      //   id: 12343
+      // }
     },
     // 设置一个 通配符的一级路由,当url地址无法与上面的规则匹配的时候,就会跟我匹配
     {
