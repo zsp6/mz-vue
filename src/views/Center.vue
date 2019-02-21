@@ -15,12 +15,12 @@
           <span>拼团订单</span>
         </li>
       </ul>
-      <div class="my-card">
+      <router-link tag="div" to="/card" class="my-card">
         <em class="iconfont icon-card"></em>
         <span>卖座卡</span>
         <i class="iconfont icon-youjiantou"></i>
-      </div>
-      <div class="yue">
+      </router-link>
+      <router-link tag="div" to="/money" class="yue">
         <em class="iconfont icon-yue"></em>
         <span>余额</span>
         <i>
@@ -30,12 +30,12 @@
           </strong>
           <i class="iconfont icon-youjiantou"></i>
         </i>
-      </div>
-      <div class="shezhi">
+      </router-link>
+      <router-link tag="div" to="/set" class="shezhi">
         <em class="iconfont icon-shezhi2"></em>
         <span>设置</span>
         <i class="iconfont icon-youjiantou"></i>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
