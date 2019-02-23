@@ -63,6 +63,10 @@ let router = new VueRouter({
           path: 'center',
           component: () => import('./views/Center.vue')
         },
+        {
+          path: 'tuan',
+          component: () => import('./views/Tuan.vue')
+        },
         // localhost:8080/#/ -> localhost:8080/#/films
         {
           path: '',

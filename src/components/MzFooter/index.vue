@@ -14,6 +14,12 @@
         </router-link>
       </li>
       <li>
+        <router-link to="/tuan">
+          <em class="iconfont icon-tuangou"></em>
+          <span>9.9拼团</span>
+        </router-link>
+      </li>
+      <li>
         <router-link to="/center">
           <em class="iconfont icon-shouye"></em>
           <span>我的</span>

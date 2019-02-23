@@ -62,38 +62,84 @@
 </template>
 
 <script>
-// import axios from 'axios';
-/**
- * PS: 在组件中使用 mapState mapGetters 是放在 computed
- *     在组件中使用 mapMutations mapActions 是放在 methods
- */
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+import axios from 'axios';
 export default {
-  computed: {
-    ...mapState(['cityData', 'curCityName']),
-    ...mapGetters(['filterCityData', 'filterLetters'])
+  data () {
+    return {
+      // curCityName: '深圳', // 自身不要,而是用仓库中的curCityName
+      // cityData: [] // 自身不要,而是用仓库中的curCityName
+    };
   },
-  // computed: {
-  //   cityData () {
-  //     return this.$store.state.cityData;
-  //   },
-  //   curCityName () {
-  //     return this.$store.state.curCityName;
-  //   },
-  //   filterCityData () {
-  //     return this.$store.getters.filterCityData;
-  //   },
-  //   filterLetters () {
-  //     return this.$store.getters.filterLetters;
-  //   }
-  // },
+  computed: {
+    /**
+     * 处理之后的城市数据
+     */
+    // filterCityData () {
+    //   let hash = {};
+    //   let i = 0;
+    //   let res = [];
+
+    //   this.cityData.forEach(item => {
+    //     // 1. 得到当前城市的首字母
+    //     let firstLetter = item.pinyin.substr(0, 1).toUpperCase();
+    //     // 2. 判断当前城市的首字母是循环过程中第一次出现,还是多次出现.
+    //     if (hash[firstLetter]) {
+    //       // 存在
+    //       let index = hash[firstLetter] - 1;
+    //       res[index].list.push(item);
+    //     } else {
+    //       // 不存在
+    //       hash[firstLetter] = ++i;
+    //       let obj = {};
+    //       obj.py = firstLetter;
+    //       obj.list = [item];
+    //       res.push(obj);
+    //     }
+    //   });
+    //   let temp = res.sort((a, b) => {
+    //     return a.py.charCodeAt() - b.py.charCodeAt();
+    //   });
+    //   return temp;
+    // },
+    /**
+     * 右侧显示的字母的数据
+     */
+    // filterLetters () {
+    //   return this.filterCityData.map(item => {
+    //     return item.py;
+    //   });
+    // },
+    cityData () {
+      return this.$store.state.cityData;
+    },
+    curCityName () {
+      return this.$store.state.curCityName;
+    },
+    filterCityData () {
+      return this.$store.getters.filterCityData;
+    },
+    filterLetters () {
+      return this.$store.getters.filterLetters;
+    }
+  },
   methods: {
     gofilm () {
       return this.$router.push('./Film.vue');
     },
-    // 给组件加一个方法,这个方法其实就是 mutation
-    ...mapMutations(['chgCityData', 'chgCityName']),
-    ...mapActions(['getCityData']),
+    /**
+    获取城市列表数据
+     */
+    getCityData () {
+      axios.get('./json/city.json').then(response => {
+        let res = response.data;
+        if (res.status === 0) {
+          // this.cityData = res.data.cities;
+          this.$store.commit('chgCityData', res.data.cities);
+        } else {
+          alert(res.msg);
+        }
+      });
+    },
     /**
      * 右侧的拼音首字母点击
      * @param {String} py 点击的首字母
@@ -111,27 +157,27 @@ export default {
      */
     changeCity (city) {
       // this.curCityName = city.name;
-      // this.$store.commit('chgCityName', {
-      //   name: city.name,
-      //   age: 21
-      // });
-      this.chgCityName({
+      this.$store.commit('chgCityName', {
         name: city.name,
-        age: 12
+        age: 21
       });
       this.$router.back();
     }
   },
   created () {
-    // this.getCityData();
-    // 调用仓库中的 action 的 dispatch 方法
-    // this.$store.dispatch('getCityData');
     this.getCityData();
   }
 };
 </script>
 
 <style lang="less">
+.city-main{
+  position: relative;
+  margin-right: 17px;
+}
+.city-main-left{
+  overflow-y: auto;
+}
 .dingwei{
   height: 94px;
   position: fixed;
@@ -190,7 +236,7 @@ export default {
 }
 .city-main-right {
   position: fixed;
-  width: 27px;
+  width: 17px;
   margin-top: 94px;
   right: 0;
   top: 0;
