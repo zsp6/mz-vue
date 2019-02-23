@@ -2,8 +2,8 @@
   <div>
     <div class="c-head">
       <div class="header">
-        <div class="left">
-          <i>北京</i>
+        <div class="left" @click="goCity">
+          <i>{{ curCityName }}</i>
           <em class="iconfont icon-xiajiantou"></em>
         </div>
         <div class="center">影院</div>
@@ -45,6 +45,21 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    goCity () {
+      this.$router.push('/city');
+    }
+  },
+  computed: {
+    curCityName () {
+      return this.$store.state.curCityName;
+    }
+  }
+}
+</script>
 
 <style lang="less">
 .c-head{
