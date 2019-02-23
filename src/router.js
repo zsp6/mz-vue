@@ -21,7 +21,7 @@ import VueRouter from 'vue-router';
 // import Set from './views/Set.vue';
 // import Login from './views/Login.vue';
 import NProgress from 'nprogress';
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ showSpinner: false });// 设置顶部进度条的小圆圈不出现
 
 Vue.use(VueRouter);
 
@@ -44,28 +44,28 @@ let router = new VueRouter({
       path: '/',
       // component: Home,
       // const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue'), 路由懒加载
-      component: () => import('./views/Home.vue'),
+      component: () => import('./views/Home/Index.vue'),
       children: [
         // PS: 不是一级路由的话,path路径前面不要加 /
         // PS: 二级或二级以上的路由,他们的url地址会从一级路由开始一直做追加的
         // localhost:8080/#/fillms
         {
           path: 'films',
-          component: () => import('./views/Film.vue')
+          component: () => import('./views/Home/Film/Index.vue')
         },
         // localhost:8080/#/cinemas
         {
           path: 'cinemas',
-          component: () => import('./views/Cinema.vue')
+          component: () => import('./views/Home/Cinema/Index.vue')
         },
         // localhost:8080/#/center
         {
           path: 'center',
-          component: () => import('./views/Center.vue')
+          component: () => import('./views/Home/Center/Index.vue')
         },
         {
           path: 'tuan',
-          component: () => import('./views/Tuan.vue')
+          component: () => import('./views/Home/Tuan/Index.vue')
         },
         // localhost:8080/#/ -> localhost:8080/#/films
         {
@@ -78,7 +78,7 @@ let router = new VueRouter({
     // 城市选择页
     {
       path: '/city',
-      component: () => import('./views/City.vue')
+      component: () => import('./views/City/Index.vue')
       // components: {
       //   top: City,
       //   bottom: Detail,
@@ -88,7 +88,7 @@ let router = new VueRouter({
     // 详情页
     {
       path: '/detail/:id',
-      component: () => import('./views/Detail.vue')
+      component: () => import('./views/Detail/Index.vue')
       // props: true
       // props: {
       //   id: 12343
@@ -101,7 +101,7 @@ let router = new VueRouter({
     },
     {
       path: '/card',
-      component: () => import('./views/Card.vue')
+      component: () => import('./views/Card/Index.vue')
     },
     {
       path: '/money',
@@ -110,7 +110,7 @@ let router = new VueRouter({
       //     return h('div', '余额页面');
       //   }
       // }
-      component: () => import('./views/Money.vue')
+      component: () => import('./views/Money/Index.vue')
     },
     {
       path: '/set',
@@ -119,11 +119,11 @@ let router = new VueRouter({
       //     return h('div', '设置页面');
       //   }
       // }
-      component: () => import('./views/Set.vue')
+      component: () => import('./views/Set/Index.vue')
     },
     {
       path: '/login',
-      component: () => import('./views/Login.vue')
+      component: () => import('./views/Login/Index.vue')
     }
   ]
 })

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MzFooter from '../components/MzFooter';
+import MzFooter from '@/components/MzFooter';
 export default {
   components: {
     MzFooter

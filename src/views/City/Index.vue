@@ -89,7 +89,7 @@ export default {
   // },
   methods: {
     gofilm () {
-      return this.$router.push('./Film.vue');
+      return this.$router.push('@/views/Home/Film/Index.vue');
     },
     // 给组件加一个方法,这个方法其实就是 mutation
     ...mapMutations(['chgCityData', 'chgCityName']),
