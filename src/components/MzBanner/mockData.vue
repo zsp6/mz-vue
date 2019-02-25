@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide"
        v-for="item in bannerList"
-       :key="item.bannerId">
+       :key="item._id">
         <img :src="item.imgUrl" alt="">
       </div>
     </div>
@@ -39,16 +39,14 @@ export default {
     }
   },
   created () {
-    axios.get('/api/gateway?type=2&cityId=110100&k=5515151', {
-      headers: {
-        // 配置请求头
-        'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154812358253596896886810"}',
-        'X-Host': 'mall.cfg.common-banner'
+    axios.get('http://localhost:3000/banner/search', {
+      params: {
+        pageSize: 10
       }
     }).then((res) => {
       // console.log(res);
       let data = res.data;
-      if (data.status === 0) {
+      if (data.code === 0) {
         this.bannerList = data.data;
         this.$nextTick(() => {
           this.initSwiper();

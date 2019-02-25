@@ -132,6 +132,11 @@ export default {
 </script>
 
 <style lang="less">
+.city-main-left{
+  overflow-y: auto;
+  height: 546px;
+  width: 345px;
+}
 .dingwei{
   height: 94px;
   position: fixed;
@@ -190,7 +195,7 @@ export default {
 }
 .city-main-right {
   position: fixed;
-  width: 27px;
+  width: 20px;
   margin-top: 94px;
   right: 0;
   top: 0;
