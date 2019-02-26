@@ -26,7 +26,7 @@ NProgress.configure({ showSpinner: false });// 设置顶部进度条的小圆圈
 Vue.use(VueRouter);
 
 let router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   // 滚动行为
   scrollBehavior (to, from, savedPosition) {
     return {
