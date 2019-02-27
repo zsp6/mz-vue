@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="city-main">
-      <ul class="city-main-left">
+      <ul class="city-main-left" id="city-main-left">
         <div class="city-main-top">
           <div class="gps-city">
             <p>GPS定位你所在城市</p>
@@ -103,7 +103,7 @@ export default {
       var el = document.getElementById(py);
       // console.log(el.offsetTop);
       // 2. 操作滚动条滚动
-      document.documentElement.scrollTop = el.offsetTop;
+      document.getElementById('city-main-left').scrollTop = el.offsetTop;
     },
     /**
      * 切换城市
@@ -132,10 +132,13 @@ export default {
 </script>
 
 <style lang="less">
+.city-main{
+  position: relative;
+}
 .city-main-left{
   overflow-y: auto;
   height: 546px;
-  width: 345px;
+  width: 355px;
 }
 .dingwei{
   height: 94px;

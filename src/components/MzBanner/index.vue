@@ -39,11 +39,14 @@ export default {
     }
   },
   created () {
-    axios.get('/api/gateway?type=2&cityId=110100&k=5515151', {
+    axios.get('https://m.maizuo.com/gateway?type=2&cityId=110100&k=6538420', {
       headers: {
         // 配置请求头
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154812358253596896886810"}',
         'X-Host': 'mall.cfg.common-banner'
+      },
+      params: {
+        pageSize: 10
       }
     }).then((res) => {
       // console.log(res);
