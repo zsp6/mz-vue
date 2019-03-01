@@ -1,102 +1,46 @@
 <template>
   <div>
     <ul class="main">
-      <router-link tag="li" to="/detail/100">
+      <router-link tag="li" to="/detail/100" v-for="(item,index) in nowPlayList" :key="index">
         <div class="left">
-          <img src="@/assets/images/test05.jpg" style="width:66px;height: 90.81px; display: block">
+          <img :src="item.poster" style="width:66px;height: 90.81px; display: block">
         </div>
         <div class="center">
           <p>
-            <span>流浪地球&nbsp;</span>
-            <span>2D</span>
+            <span>{{ item.name }}&nbsp;</span>
+            <span>{{ item.filmType.name }}</span>
+          </p>
+          <p>&nbsp;</p>
+          <p>
+            <span>主演：{{item.actors ? item.actors.map(films => films.name).join(' ') : '暂无主演'}}</span>
           </p>
           <p>
-            <span>观众评分&nbsp;</span>
-            <span>7.9</span>
+            <span>上映日期: {{ '周' + new Date(item.premiereAt*1000).getDay() +' '+ Number(new Date(item.premiereAt*1000).getMonth()+1) + '月'+ new Date(item.premiereAt*1000).getDate() + '日'}}</span>
           </p>
-          <p>
-            <span>主演：郭帆 屈楚萧 李光洁 吴孟达 赵今麦</span>
-          </p>
-          <p>
-            <span>中国大陆 | 100分钟</span>
-          </p>
-        </div>
-        <div class="right">
-          <span>购票</span>
-        </div>
-      </router-link>
-      <router-link tag="li" to="/detail/200">
-        <div class="left">
-          <img src="@/assets/images/test06.jpg" style="width:66px;height: 90.81px; display: block">
-        </div>
-        <div class="center">
-          <p>
-            <span>疯狂的外星人&nbsp;</span>
-            <span>2D</span>
-          </p>
-          <p>
-            <span>观众评分&nbsp;</span>
-            <span>7.9</span>
-          </p>
-          <p>
-            <span>主演：郭帆 屈楚萧 李光洁</span>
-          </p>
-          <p>
-            <span>中国大陆 | 100分钟</span>
-          </p>
-        </div>
-        <div class="right">
-          <span>购票</span>
-        </div>
-      </router-link>
-      <router-link tag="li" to="/detail/300">
-        <div class="left">
-          <img src="@/assets/images/test07.jpg" style="width:66px;height: 90.81px; display: block">
-        </div>
-        <div class="center">
-          <p>
-            <span>飞驰人生&nbsp;</span>
-            <span>2D</span>
-          </p>
-          <p>
-            <span>观众评分&nbsp;</span>
-            <span>7.9</span>
-          </p>
-          <p>
-            <span>主演：郭帆 屈楚萧 李光洁</span>
-          </p>
-          <p>
-            <span>中国大陆 | 100分钟</span>
-          </p>
-        </div>
-        <div class="right">
-          <span>购票</span>
-        </div>
-      </router-link>
-      <router-link tag="li" to="/detail/400">
-        <div class="left">
-          <img src="@/assets/images/test08.jpg" style="width:66px;height: 90.81px; display: block">
-        </div>
-        <div class="center">
-          <p>
-            <span>一吻定情&nbsp;</span>
-            <span>2D</span>
-          </p>
-          <p>
-            <span>观众评分&nbsp;</span>
-            <span>7.9</span>
-          </p>
-          <p>
-            <span>主演：郭帆 屈楚萧 李光洁</span>
-          </p>
-          <p>
-            <span>中国大陆 | 100分钟</span>
-          </p>
-        </div>
-        <div class="right">
-          <span>购票</span>
         </div>
       </router-link>
     </ul>
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+export default {
+  data () {
+    return {
+      nowPlayList: []
+    }
+  },
+  created () {
+    axios.get('https://m.maizuo.com/gateway?cityId=152900&pageNum=1&pageSize=10&type=2&k=5821513', {
+      headers: {
+        'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154812358253596896886810"}',
+        'X-Host': 'mall.film-ticket.film.list'
+      }
+    }).then((res) => {
+      let data = res.data.data.films;
+      this.nowPlayList = data;
+    })
+  }
+}
+</script>

@@ -25,16 +25,16 @@
 
     <div class="c-main">
       <ul>
-        <li>
+        <li v-for="(item, index) in cinemasList" :key="index">
           <a href="#">
             <div class="left">
-              <span>保利国际影城北京天安门店</span>
-              <span>北京市西城区前门煤市街北京坊C1区，B1\B2层</span>
+              <span>{{ item.name }}</span>
+              <span>{{ item.address }}</span>
             </div>
             <div class="right">
               <span>
                 <i>￥</i>
-                <i>40</i>
+                <i>{{ item.lowPrice/100 }}</i>
                 <i>起</i>
               </span>
               <span>距离未知</span>
@@ -47,7 +47,13 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+  data () {
+    return {
+      cinemasList: []
+    }
+  },
   methods: {
     goCity () {
       this.$router.push('/city');
@@ -57,6 +63,23 @@ export default {
     curCityName () {
       return this.$store.state.curCityName;
     }
+  },
+  created () {
+    axios.get('https://m.maizuo.com/gateway?cityId=440100&k=8644876', {
+      headers: {
+        'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154812358253596896886810"}',
+        'X-Host': 'mall.film-ticket.cinema.list'
+      }
+    }).then((res) => {
+      // console.log(res);
+      let data = res.data;
+      if (data.status === 0) {
+        this.cinemasList = data.data.cinemas;
+        // console.log(this.cinemasList);
+      } else {
+        alert('网络异常,请稍后重试')
+      }
+    })
   }
 }
 </script>
@@ -90,7 +113,6 @@ export default {
   width: 54px;
   text-align: right;
 }
-
 .nav {
   height: 50px;
   display: flex;
@@ -102,6 +124,7 @@ export default {
 }
 .c-main{
   margin-top: 96px;
+  margin-bottom: 50px;
 }
 .c-main ul li {
   height: 75px;

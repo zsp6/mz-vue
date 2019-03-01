@@ -51,7 +51,21 @@ let router = new VueRouter({
         // localhost:8080/#/fillms
         {
           path: 'films',
-          component: () => import('./views/Home/Film/Index.vue')
+          component: () => import('./views/Home/Film/Index.vue'),
+          children: [
+            {
+              path: 'nowPlaying',
+              component: () => import('./views/Home/Film/NowPlaying.vue')
+            },
+            {
+              path: 'comingSoon',
+              component: () => import('./views/Home/Film/ComingSoon.vue')
+            },
+            {
+              path: '/',
+              redirect: '/films/nowPlaying'
+            }
+          ]
         },
         // localhost:8080/#/cinemas
         {

@@ -11,7 +11,9 @@ let store = new Vuex.Store({
     // 当前定位的或者切换的城市
     curCityName: '',
     // 城市列表数据
-    cityData: []
+    cityData: [],
+    // 影片类型
+    filmType: 'nowPlaying'
   },
   getters: {
     /**
@@ -56,6 +58,9 @@ let store = new Vuex.Store({
     }
   },
   mutations: {
+    chgFilmType (state, payload) {
+      state.filmType = payload;
+    },
     // key: value
     /**
      * 修改 curCityName
@@ -99,7 +104,8 @@ let store = new Vuex.Store({
       var myCity = new BMap.LocalCity();
       myCity.get((result) => {
         commit('chgCityName', {
-          name: result.name.substr(0, 2)
+          name: result.name.substr(0, 2),
+          id: result.id
         })
       });
     }

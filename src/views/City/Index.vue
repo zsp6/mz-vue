@@ -117,7 +117,7 @@ export default {
       // });
       this.chgCityName({
         name: city.name,
-        age: 12
+        id: city.cityId
       });
       this.$router.back();
     }
