@@ -15,7 +15,7 @@
             <span>主演：{{item.actors ? item.actors.map(films => films.name).join(' ') : '暂无主演'}}</span>
           </p>
           <p>
-            <span>上映日期: {{ '周' + new Date(item.premiereAt*1000).getDay() +' '+ Number(new Date(item.premiereAt*1000).getMonth()+1) + '月'+ new Date(item.premiereAt*1000).getDate() + '日'}}</span>
+            <span>上映日期: {{ coming(item) }}</span>
           </p>
         </div>
       </router-link>
@@ -29,6 +29,16 @@ export default {
   data () {
     return {
       nowPlayList: []
+    }
+  },
+  methods: {
+    coming (prop) {
+      var week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+      var n = new Date(prop.premiereAt * 1000);
+      var m = Number(n.getMonth() + 1);
+      var d = n.getDate();
+      var w = n.getDay();
+      return (week[w] + ' ' + m + '月' + d + '日');
     }
   },
   created () {
