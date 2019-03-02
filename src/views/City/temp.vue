@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 export default {
   data () {
     return {
@@ -130,7 +130,7 @@ export default {
     获取城市列表数据
      */
     getCityData () {
-      axios.get('./json/city.json').then(response => {
+      this.$http.get('./json/city.json').then(response => {
         let res = response.data;
         if (res.status === 0) {
           // this.cityData = res.data.cities;

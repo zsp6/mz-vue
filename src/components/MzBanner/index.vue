@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+// import axios from 'axios';
+// import http from '@/utils/http.js'
 export default {
   data () {
     return {
@@ -39,7 +39,7 @@ export default {
     }
   },
   created () {
-    axios.get('https://m.maizuo.com/gateway?type=2&cityId=110100&k=6538420', {
+    this.$http.get('https://m.maizuo.com/gateway?type=2&cityId=110100&k=6538420', {
       headers: {
         // 配置请求头
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154812358253596896886810"}',

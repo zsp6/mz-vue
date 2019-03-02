@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 export default {
   data () {
     return {
@@ -65,7 +65,7 @@ export default {
     }
   },
   created () {
-    axios.get('https://m.maizuo.com/gateway?cityId=440100&k=8644876', {
+    this.$http.get('https://m.maizuo.com/gateway?cityId=440100&k=8644876', {
       headers: {
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154812358253596896886810"}',
         'X-Host': 'mall.film-ticket.cinema.list'
