@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router.js';
 import store from './store/index.js';
 import http from './utils/http';
+// import './utils/rem';
 import './assets/styles/reset.less';
 import 'nprogress/nprogress.css';
 import './assets/styles/common.less';

@@ -1,12 +1,16 @@
 <template>
   <div>
-    <!-- <router-view name="top"></router-view>
-    <router-view name="bottom"></router-view> -->
-    <router-view></router-view>
+    <transition
+      enter-active-class="animated bounceInUp"
+      leave-active-class="animated bounceOutDown"
+    >
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
+import animate from 'animate.css';
 export default {
   created () {
     this.$store.dispatch('getCityName');

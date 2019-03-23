@@ -49,7 +49,7 @@ export default {
 }
 .main {
   background: #fff;
-  margin-bottom: 44px;
+  margin-bottom: 50px;
   li {
     height: 124px;
     display: flex;
@@ -103,5 +103,8 @@ export default {
       }
     }
   }
+}
+span{
+  font-size: 14px;
 }
 </style>
