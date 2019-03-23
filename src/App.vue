@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import animate from 'animate.css';
+import 'animate.css';
 export default {
   created () {
     this.$store.dispatch('getCityName');
